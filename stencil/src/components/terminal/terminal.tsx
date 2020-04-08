@@ -1,4 +1,4 @@
-import { Component, h, ComponentInterface } from '@stencil/core';
+import { Component, h, ComponentInterface, Prop } from '@stencil/core';
 
 @Component({
   tag: 'my-terminal',
@@ -6,7 +6,25 @@ import { Component, h, ComponentInterface } from '@stencil/core';
   shadow: true
 })
 export class MyTerminal implements ComponentInterface {
+  @Prop() label: string = 'MyLabel';
+
+  componentWillLoad() {
+    console.log("MyTerminal -> componentWillLoad -> this.label", this.label)
+  }
+
+  componentDidLoad() {
+    console.log("MyTerminal -> componentDidLoad -> this.label", this.label)
+  }
+
+  componentWillUpdate() {
+    console.log("MyTerminal -> componentWillUpdate -> this.label", this.label)
+  }
+
+  componentDidUpdate() {
+    console.log("MyTerminal -> componentDidUpdate -> this.label", this.label)
+  }
+
   render() {
-    return <slot />;
+    return <div>{this.label}</div>;
   }
 }
